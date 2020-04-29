@@ -13,14 +13,14 @@ DistributedObject - Base interface for all distributed objects.
 
 Operation - Hazelcast calls this as a Runnable. Base class for every action performed on a Distributed object. For example, put() operation on a map, get() operation on list, etc will be converted into `Operation` objects eventually on server. That `Operation` instance will have the relevant logic to perform the action on the distributed object.
 
-![Operation hierarchy](image/operation-hierarchy.png)
+<img src="image/operation-hierarchy.png" alt="Operation hierarchy" width="600"/>
 
 ClientMessage - Binary Data structure exchanged between  clients and hazelcast server.
 Hazelcast client embeds the details of the operation in ClientMessage object, and sends it to server.
 
 MessageTask - Interface for all the client messages that needs to be handled at hazelcast server. 
 
-![MessageTask hierarchy](image/message-task-hierarchy.png)
+<img src="image/message-task-hierarchy.png" alt="MessageTask hierarchy" width="600"/>
 
 Example: When a client wants to  Perform a put(k1,v1) operation on a distributed map `m`, Client will build a `ClientMessage` object which contains a data frame with bytes for the Map name `m` and the key/value (k1/v1) pair. At server on receiving  `ClientMessage` decodes into `MapPutMessageTask` (implementation of `MessageTask`), and eventually creates `PutOperation`(implementation of `Operation`) object to execute on map distributed object.
 
@@ -35,7 +35,7 @@ Non-Partitioned Distributed objects - Instance of the distributed data structure
 
 As shown below, In Hazelcast each data structure is encapsulated in its own Service. Each service is a singleton object. Below view shows the object view for only Collection based distributed objects. 
 
-![Hazelcast Object View](image/hazelcast-object-view.png)
+<img src="image/hazelcast-object-view.png" alt="Hazelcast Object View" height="500" width="600"/>
 
 Set, List, Queue, RingBuffer services holds a concurrent has map which in turns holds the data. Key of the map is the name of the distributed object, and the value is be the distributed object itself.
 
@@ -59,13 +59,13 @@ When an non-rest remote client invokes operations,  ClientEngine handles operati
 
 When a REST Client invokes operations, Text Command Service handles those requests, and uses HazelcastInstanceImpl for further processing.
 
-![Hazelcast Service](image/hazelcast-service-view.png)
+<img src="image/hazelcast-service-view.png" alt="Hazelcast Service" width="600"/>
 
 ## Hazelcast Server Architecture for Client Operations
  
 Following is the architecture view of the hazelcast server for remote-client operations.
 
-![Hazelcast architecture for client operations](image/hazelcast-arch-flow-client-operations.png)
+<img src="image/hazelcast-arch-flow-client-operations.png" alt="Hazelcast architecture for client operations" width="600"/>
 
 Hazelcast client sends the operations to be performed on data structures as `ClientMessage` to the server, using Open Binary Control Protocol(Refers Hazelcast manual).
 
@@ -85,7 +85,7 @@ Hazelcast Client(in Client/Server deployment) is used to access and update distr
 
 Following is simple architecture view of the hazelcast client.
 
-![Hazelcast client arch view](image/Hazelcast-client-arch.png)
+<img src="image/hazelcast-client-arch.png" alt="Hazelcast client arch view" width="600"/>
 
 At a high level, we can view client working in 4 layers.
 
