@@ -7,7 +7,7 @@ Hazelcast Client is used to access and change distributed data  on the cluster. 
 Following is simple architecture view of the hazelcast client.
 
 
-![Hazelcast client arch view](Hazelcast_client_arch.png)
+![Hazelcast client arch view](image/hazelcast-client-arch.png)
 
 At a high level, we can view client working in 4 layers.
 
